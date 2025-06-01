@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lưu bút gửi em</title>
+  <style>
+    body {
+      background: #ffe6f0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #cc3366;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #444;
+      max-width: 600px;
+    }
+
+    textarea {
+      margin-top: 30px;
+      width: 90%;
+      max-width: 600px;
+      height: 200px;
+      padding: 15px;
+      font-size: 16px;
+      border: 2px solid #cc3366;
+      border-radius: 10px;
+      resize: none;
+      outline: none;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #cc3366;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #b22d59;
+    }
+
+    .message {
+      margin-top: 40px;
+      font-style: italic;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>💌 Lưu bút nhỏ dành cho em 💌</h1>
+  <p>A viết vài dòng này để khép lại hành trình nhỏ trong ngày hôm nay. Cảm ơn em vì đã dành thời gian trải nghiệm món quà này 😚</p>
+  <p>Em có thể để lại cảm xúc, suy nghĩ, hoặc lời nhắn cho anh ở bên dưới (chỉ là tượng trưng thôi 😚):</p>
+
+  <textarea placeholder="Viết gì đó ở đây..."></textarea>
+  <button onclick="sendSecretEmail()">Gửi (giả vờ 😚)</button>
+
+  <div class="message" id="thankMessage" style="display: none;">
+    Cảm ơn em đã để lại lời nhắn 😚 Anh yêu em nhiều lắm ❤️
+  </div>
+
+  <script>
+    function sendSecretEmail() {
+      const content = document.querySelector("textarea").value.trim();
+      if (!content) return;
+
+      fetch("https://script.google.com/macros/s/AKfycbyyIX3X908HCwvSn90JGwVHH3IGiK8cUdH0BsOrBMJJUoOQB5Y_LtJ5IDFNTuxkKI4/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `content=${encodeURIComponent(content)}`
+      });
+
+      document.getElementById("thankMessage").style.display = "block";
+    }
+  </script>
+</body>
+</html>
